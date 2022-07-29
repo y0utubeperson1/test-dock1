@@ -7,5 +7,3 @@ COPY . /tmp/script
 
 RUN yarn install
 RUN yarn run test:e2e
-
-COPY CONTAINER:/tmp/script/playwright-report ./tmp/script/playwright-report
