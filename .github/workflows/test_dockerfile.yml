@@ -44,7 +44,7 @@ jobs:
         name: Test Playwright
         run: |
           docker build ./testfiles/
-          ls -a -R
+          ls -a -R -I.git?
       -
         name: Upload test results to artifcats
         uses: actions/upload-artifact@v3
