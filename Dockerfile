@@ -1,12 +1,15 @@
 FROM atlassian/default-image:3
 #Install pip for Python 3
-RUN apt-get update && \
-apt-get install -y python3.8-distutils && \
-curl https://bootstrap.pypa.io/get-pip.py | python3
+#Copy intended files for build script
+WORKDIR /tmp
+COPY ./nodeSetUnsafe.sh /nodeSetUnsafe.sh
+RUN chmod +x /nodeSetUnsafe.sh
 
-#Install Playwright for Python
-RUN pip install playwright && \
-    pip install pytest-playwright  && \
-    playwright install
+# Install yarn & Playwright for Node
+RUN /tmp/nodeSetUnsafe.sh && \
+npm install --global yarn && \
+npm install @playwright/test && \
+npx playwright install-deps && \
+npx playwright install
 
 RUN DEBIAN_FRONTEND=noninteractive playwright install-deps

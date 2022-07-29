@@ -6,7 +6,7 @@ on:
       - 'main'
 
 env:
-  TEST_TAG: user/myapp:test
+  TEST_TAG: y0utubesir/mytestimg:test
 
 jobs:
   docker:
@@ -35,7 +35,11 @@ jobs:
           load: true
           tags: ${{ env.TEST_TAG }}
       -
-        name: Test
+        name: Test Docker Image
+        run: |
+          docker build ./testfiles/
+      -
+        name: Remove Test Image
         run: |
           docker run --rm ${{ env.TEST_TAG }}
       -
@@ -43,6 +47,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           push: true
-          tags: user/app:latest
+          tags: y0utubesir/mytestimg:latest
