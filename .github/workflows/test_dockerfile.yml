@@ -6,7 +6,7 @@ on:
       - 'main'
 
 env:
-  TEST_TAG: y0utubesir/mytestimg:${{GITHUB_SHA}}
+  TEST_TAG: y0utubesir/mytestimg:test
 
 jobs:
   docker:
