@@ -12,4 +12,4 @@ npm install @playwright/test && \
 npx playwright install-deps && \
 npx playwright install
 
-RUN DEBIAN_FRONTEND=noninteractive playwright install-deps
+#RUN DEBIAN_FRONTEND=noninteractive playwright install-deps
