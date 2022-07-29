@@ -2,8 +2,8 @@ FROM atlassian/default-image:3
 #Install pip for Python 3
 #Copy intended files for build script
 WORKDIR /tmp
-COPY ./nodeSetUnsafe.sh /nodeSetUnsafe.sh
-RUN chmod +x /nodeSetUnsafe.sh
+COPY ./nodeSetUnsafe.sh /tmp/nodeSetUnsafe.sh
+RUN chmod +x /tmp/nodeSetUnsafe.sh
 
 # Install yarn & Playwright for Node
 RUN /tmp/nodeSetUnsafe.sh && \
