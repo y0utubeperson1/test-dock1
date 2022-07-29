@@ -41,14 +41,17 @@ jobs:
           load: true
           tags: ${{ env.TEST_TAG }}
       -
-        name: Test Docker Image using Playwright Test
+        name: Test Playwright
+        run: |
+          docker build ./testfiles/
+      -
+        name: Upload test results to artifcats
         uses: actions/upload-artifact@v3
+        if: ${{ always() }}
         with:
           name: playwright-test-report
           path: ./testfiles/playwright-report
           if-no-files-found: error
-        run: |
-          docker build ./testfiles/
       -
         name: Remove Test Image
         run: |
