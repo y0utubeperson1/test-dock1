@@ -6,7 +6,7 @@ on:
       - 'main'
 
 env:
-  TEST_TAG: y0utubesir/mytestimg:${{ github.event.head_commit.message }}
+  TEST_TAG: y0utubesir/mytestimg:${GITHUB_SHA}
 
 jobs:
   docker:
