@@ -41,10 +41,13 @@ jobs:
           load: true
           tags: ${{ env.TEST_TAG }}
       -
-        name: Test Playwright
+        name: Build Test Image
         run: |
-          docker build ./testfiles/
-          ls -a -R -I.git?
+          docker build -t testimg ./testfiles/
+      -
+        name: Run Test Container
+        run: |
+          docker run -v ./testfiles/playwright-report:./playwright-report ${{ env.TEST_TAG }}
       -
         name: Upload test results to artifcats
         uses: actions/upload-artifact@v3
