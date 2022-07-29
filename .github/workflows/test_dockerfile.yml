@@ -16,6 +16,9 @@ jobs:
         name: Run Venv
         run: printenv
       -
+        name: Run Venv
+        run: echo ${TEST_TAG}
+      -
         name: Checkout
         uses: actions/checkout@v3
       -
