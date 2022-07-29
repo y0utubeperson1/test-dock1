@@ -47,7 +47,7 @@ jobs:
       -
         name: Run Test Container
         run: |
-          docker run -v ./testfiles/playwright-report:./playwright-report ${{ env.TEST_TAG }}
+          docker run -v ./testfiles/playwright-report:/playwright-report ${{ env.TEST_TAG }}
       -
         name: Upload test results to artifcats
         uses: actions/upload-artifact@v3
