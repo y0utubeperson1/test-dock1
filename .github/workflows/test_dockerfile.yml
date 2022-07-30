@@ -7,7 +7,7 @@ on:
 
 env:
   TEST_TAG: y0utubesir/mytestimg:test
-  DOCKERFILE_PATH: Dockerfile.3-latest
+  DOCKERFILE_PATH: ./Dockerfile.3-latest
 
 jobs:
   docker:
