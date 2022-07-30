@@ -62,3 +62,10 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: y0utubesir/mytestimg:latest
+      - name: Update repo description
+        uses: peter-evans/dockerhub-description@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: y0utubesir/mytestimg
+          readme-filepath: ./README.md
