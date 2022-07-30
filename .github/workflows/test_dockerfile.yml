@@ -7,6 +7,7 @@ on:
 
 env:
   TEST_TAG: y0utubesir/mytestimg:test
+  DOCKERFILE_PATH: Dockerfile.3-latest
 
 jobs:
   docker:
@@ -37,25 +38,13 @@ jobs:
         name: Build and export to Docker
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ${{ env.DOCKERFILE_PATH }}
           load: true
           tags: ${{ env.TEST_TAG }}
       -
         name: Build Test Image
         run: |
           docker build -t testimg ./testfiles/
-      -
-        name: Run Test Container
-        run: |
-          docker run --mount type=volume,src=${GITHUB_WORKSPACE}/testfiles/playwright-report,dst=/tmp/playwright-report ${{ env.TEST_TAG }}
-      -
-        name: Upload test results to artifcats
-        uses: actions/upload-artifact@v3
-        if: ${{ always() }}
-        with:
-          name: playwright-test-report
-          path: ${GITHUB_WORKSPACE}/testfiles/playwright-report
-          if-no-files-found: error
       -
         name: Remove Test Image
         run: |
@@ -65,7 +54,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ${{ env.DOCKERFILE_PATH }}
           platforms: linux/amd64
           push: true
           tags: y0utubesir/mytestimg:latest
