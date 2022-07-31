@@ -71,5 +71,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: ${{ secrets.MAIN_TAG }}
+          repository: ${{ env.MAIN_TAG }}
           readme-filepath: ./README.md
